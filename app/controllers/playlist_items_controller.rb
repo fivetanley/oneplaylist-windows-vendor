@@ -2,23 +2,25 @@ class PlaylistItemsController < ApplicationController
   respond_to :json
 
   def create
-    @playlist_item = current_user.playlist_items.create create_params
+    @playlist_item = playlist_items.create create_params
     respond_with @playlist_item
   end
 
   def update
-    @playlist_item = current_user.playlist_items.find(params[:id])
-    @playlist_item.update_attributes update_params
+    @playlist_item = playlist_items.update params[:id], update_params
     respond_with @playlist_item
   end
 
   def destroy
-    @playlist_item = current_user.playlist_items.find(params[:id])
-    @playlist_item.destroy
+    @playlist_item = playlist_items.destroy params[:id]
     render json: {}, status: :ok
   end
 
   private
+
+  def playlist_items
+    current_user.playlist_items
+  end
 
   def create_params
     params.require(:playlist_item).permit(:song_id)
