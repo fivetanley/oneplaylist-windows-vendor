@@ -1,0 +1,285 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>One Playlist API</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  margin-left: 3px;
+  color: #c7254e;
+  background-color: rgba(255,255,255,0.7);
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item:hover {
+  background-color: #f8f8f8;
+  border-left: 2px solid #555;
+  padding-left: 15px;
+}
+.indent {
+  display: block;
+  text-indent: 16px;
+}
+.list-group-item {
+  padding-left: 16px;
+}
+.list-group-item .toggle .open {
+  display: block;
+}
+.list-group-item .toggle .closed {
+  display: none;
+}
+.list-group-item.collapsed .toggle .open {
+  display: none;
+}
+.list-group-item.collapsed .toggle .closed {
+  display: block;
+}
+a.list-group-item {
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  font-size: 15px;
+  background-color: #f5f5f5;
+}
+a.list-group-item.heading:hover {
+  background-color: #f8f8f8;
+}
+.list-group-item.collapse {
+  display: none;
+}
+.list-group-item.collapse.in {
+  display: block;
+}
+.list-group-item a span.closed {
+  display: none;
+}
+.list-group-item a span.open {
+  display: block;
+}
+.list-group-item a.collapsed span.closed {
+  display: block;
+}
+.list-group-item a.collapsed span.open {
+  display: none;
+}
+#nav {
+  width: inherit;
+  margin-top: 38px;
+  max-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+@media( max-width: 1199px) {
+  #nav {
+    max-width: 212px;
+  }
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a data-toggle="" data-target="#authentication-menu" href="#authentication" class="list-group-item heading collapsed">Authentication</a><div id="authentication-menu"><a href="#authentication-sign-in" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Sign In</a><a href="#authentication-sign-out" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Sign Out</a></div></div><div class="list-group"><a data-toggle="" data-target="#songs-menu" href="#songs" class="list-group-item heading collapsed">Songs</a><div id="songs-menu"><a href="#songs-song-list" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Song List</a></div></div><div class="list-group"><a data-toggle="" data-target="#user-menu" href="#user" class="list-group-item heading collapsed">User</a><div id="user-menu"><a href="#user-user" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>User</a></div></div><div class="list-group"><a data-toggle="" data-target="#playlist-menu" href="#playlist" class="list-group-item heading collapsed">Playlist</a><div id="playlist-menu"><a href="#playlist-playlist-items" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Playlist Items</a><a href="#playlist-playlist-item" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-danger"><i class="fa fa-times"></i></span>Playlist Item</a></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://oneplaylist.herokuapp.com">https://oneplaylist.herokuapp.com</a></p></nav></div><div class="col-md-8"><div><header><div class="page-header"><h1 id="top">One Playlist API</h1></div></header><div class="description"><p>One User. One Playlist. Limited Songs. Infinite Fun.</p>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="authentication">Authentication&nbsp;<a href="#authentication"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Every request performed against the One Playlist API happens as a
+particular user. If no user has been authenticated, then a special
+“anonymous” user will be created for the request and signed in. In
+order to change which user is signed in, you can use these
+authentication end points.</p>
+<h4 id="authentication-sign-in">Sign In&nbsp;<a href="#authentication-sign-in"><i class="fa fa-link"></i></a></h4><section id="authentication-sign-in-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Authenticate User</span></div><div style="float:left"><a href="#authentication-sign-in-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users/sign_in.json</code></div></div><div class="panel-body"><p>Authenticates user by password, and associates them with this
+session. They will remain associated with subsequent requests until a
+call to sign out is made. If successful, this will respond with a user
+resource as well as their side-loaded playlist and playlist
+items. The response would be the same as a call to <code>/user.json</code></p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#501e566f8da1343b6df0aed46a525031" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="501e566f8da1343b6df0aed46a525031" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"test@sample.com"</span></span>,
+    "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"password"</span>
+  </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#05ecc2c67cb1fb0b8a11c23ec9b007b7" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="05ecc2c67cb1fb0b8a11c23ec9b007b7" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+      "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">playlist_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">playlists</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+          "<span class="hljs-attribute">playlist_item_ids</span>": <span class="hljs-value">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+        </span>}
+      ]</span>,
+      "<span class="hljs-attribute">playlist_items</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+          "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">3</span>
+        </span>},
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+          "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+        </span>}
+      ]
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#b1b3288bdd0b33d04f987853bb542545" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b1b3288bdd0b33d04f987853bb542545" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{"<span class="hljs-attribute">errors</span>": <span class="hljs-value">{"<span class="hljs-attribute">password</span>": <span class="hljs-value">[<span class="hljs-string">"invalid password"</span>]</span>}</span>}
+</code></pre></li></ul></section><h4 id="authentication-sign-out">Sign Out&nbsp;<a href="#authentication-sign-out"><i class="fa fa-link"></i></a></h4><section id="authentication-sign-out-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Unauthenticate User</span></div><div style="float:left"><a href="#authentication-sign-out-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/users/sign_out.json</code></div></div><div class="panel-body"><p>Logs the current user out. The response to this will be an anonymous
+user with an empty, side-loaded playlist.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#f2b25ad9ab9f434248f020ebb611ee51" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f2b25ad9ab9f434248f020ebb611ee51" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+      "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+        "<span class="hljs-attribute">playlist_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">playlists</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">10</span></span>,
+          "<span class="hljs-attribute">playlist_item_ids</span>": <span class="hljs-value">[]
+        </span>}
+      ]</span>,
+      "<span class="hljs-attribute">playlist_items</span>": <span class="hljs-value">[]
+    </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="songs">Songs&nbsp;<a href="#songs"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Songs are the items for sale in One Playlist. They contain a description
+of those items as well as pricing data.</p>
+<h4 id="songs-song-list">Song List&nbsp;<a href="#songs-song-list"><i class="fa fa-link"></i></a></h4><section id="songs-song-list-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Get Songs</span></div><div style="float:left"><a href="#songs-song-list-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/songs.json</code></div></div><div class="panel-body"><p>Retrieve all songs in the system</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#33709412cebd40c793496fdad7db6822" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="33709412cebd40c793496fdad7db6822" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+      "<span class="hljs-attribute">songs</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+          "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Hotel Califoria"</span></span>,
+          "<span class="hljs-attribute">artist</span>": <span class="hljs-value"><span class="hljs-string">"Eagles"</span></span>,
+          "<span class="hljs-attribute">amazon_url</span>": <span class="hljs-value"><span class="hljs-string">"http://www.amazon.com/gp/product/B00DAKW848/ref=dm_mu_dp_trk1"</span>
+        </span>},
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+          "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"What's Going On"</span></span>,
+          "<span class="hljs-attribute">artist</span>": <span class="hljs-value"><span class="hljs-string">"Marvin Gaye"</span></span>,
+          "<span class="hljs-attribute">amazon_url</span>": <span class="hljs-value"><span class="hljs-string">"http://www.amazon.com/gp/product/B000V66LEC/ref=dm_mu_dp_trk1"</span>
+        </span>},
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+          "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Polka Your Eyes Out"</span></span>,
+          "<span class="hljs-attribute">artist</span>": <span class="hljs-value"><span class="hljs-string">"Weird Al Yankovic"</span></span>,
+          "<span class="hljs-attribute">amazon_url</span>": <span class="hljs-value"><span class="hljs-string">"http://www.amazon.com/dp/B00137T5J6/ref=dm_ws_tlw_trk4"</span>
+        </span>}
+      ]
+    </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="user">User&nbsp;<a href="#user"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>When interacting with the One Playlist API, there will always be an
+associated user for each request. If no call has been made to
+authenticate, then an anonymous user will be created and signed in
+automatically.</p>
+<h4 id="user-user">User&nbsp;<a href="#user-user"><i class="fa fa-link"></i></a></h4><section id="user-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Fetch User</span></div><div style="float:left"><a href="#user-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user.json</code></div></div><div class="panel-body"><p>Retrieve the current user. If no user has been authenticated, then
+this will return a new anonymous user and associated it with this
+session.</p>
+<blockquote>
+<p>Note that this will sideload the users playlist as well as any
+playlist items that happen to be present in it.</p>
+</blockquote>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#97bafeafcdc3cf51296c6e69542c12e6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="97bafeafcdc3cf51296c6e69542c12e6" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>    {
+      "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">playlist_id</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">playlists</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+          "<span class="hljs-attribute">playlist_item_ids</span>": <span class="hljs-value">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]
+        </span>}
+      ]</span>,
+      "<span class="hljs-attribute">playlist_items</span>": <span class="hljs-value">[
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+          "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">3</span>
+        </span>},
+        {
+          "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+          "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">5</span>
+        </span>}
+      ]
+    </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="playlist">Playlist&nbsp;<a href="#playlist"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Every user in the system has a playlist and in each playlist
+is a collection of playlist items. These represent songs that the user
+has selected for purchase. To add a song, create a playlist item. To
+remove a song, or delete the playlist item.</p>
+<h4 id="playlist-playlist-items">Playlist Items&nbsp;<a href="#playlist-playlist-items"><i class="fa fa-link"></i></a></h4><section id="playlist-playlist-items-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create Playlist Item</span></div><div style="float:left"><a href="#playlist-playlist-items-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/playlist/items.json</code></div></div><div class="panel-body"><p>Adds a song, specified by <code>song_id</code> to the user’s playlist.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fae6b9110ae092bf8dac7384a8f72989" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fae6b9110ae092bf8dac7384a8f72989" class="list-group-item panel-collapse collapse"><div class="description"></div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>    {
+      "<span class="hljs-attribute">playlist_item</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">3</span>
+      </span>}
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#9c58944a276060810432bd980fc9a35a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9c58944a276060810432bd980fc9a35a" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">playlist_item</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+    "<span class="hljs-attribute">song_id</span>": <span class="hljs-value"><span class="hljs-number">3</span>
+  </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>422</code></strong><a data-toggle="collapse" data-target="#1658c69c345560983a8b8bfbed99ec83" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1658c69c345560983a8b8bfbed99ec83" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{"<span class="hljs-attribute">errors</span>": <span class="hljs-value">{"<span class="hljs-attribute">song_id</span>": <span class="hljs-value">[<span class="hljs-string">"can't be blank"</span>]</span>}</span>}
+</code></pre></li></ul></section><h4 id="playlist-playlist-item">Playlist Item&nbsp;<a href="#playlist-playlist-item"><i class="fa fa-link"></i></a></h4><section id="playlist-playlist-item-delete" class="panel panel-danger"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Remove Playlist Item</span></div><div style="float:left"><a href="#playlist-playlist-item-delete" class="btn btn-xs btn-danger">DELETE</a></div><div style="overflow:hidden"><code>/playlist/items/{id}.json</code></div></div><div class="panel-body"><p>If a song is to be removed <em>entirely</em> from a user’s playlist,
+then just delete it.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>204</code></strong></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 21 Jan 2015</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.11.0.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script></html>
