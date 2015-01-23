@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe PlaylistItemsController do
+  let(:song) { Song.create! name: 'Hotel California', artist: 'Eagles', amazon_url: 'imgur' }
   describe "adding a song to the playlist" do
     context "when the song does not exist" do
       before do
@@ -12,7 +13,6 @@ describe PlaylistItemsController do
       end
     end
     context "with a song that does exist" do
-      let(:song) { Song.create! name: 'Hotel California', artist: 'Eagles', amazon_url: 'imgur' }
 
       before do
         post "/playlist/items.json", playlist_item: { song_id: song.id}
@@ -25,5 +25,10 @@ describe PlaylistItemsController do
         expect(json.playlist_items.map(&:id)).to eq [1]
       end
     end
+  end
+  it "does not accept a playlist_id" do
+    expect {
+      post "/playlist/items.json", playlist_item: {song_id: song.id, playlist_id: 5}
+    }.to raise_error ActionController::UnpermittedParameters
   end
 end

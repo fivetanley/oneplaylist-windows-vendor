@@ -23,6 +23,9 @@ class PlaylistItemsController < ApplicationController
   end
 
   def create_params
+    if params[:playlist_item] && params[:playlist_item][:playlist_id]
+      fail ActionController::UnpermittedParameters, [:playlist_id]
+    end
     params.require(:playlist_item).permit(:song_id)
   end
 
