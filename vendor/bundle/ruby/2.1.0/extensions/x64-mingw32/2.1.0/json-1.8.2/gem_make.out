@@ -1,0 +1,10 @@
+C:/Ruby21-x64/bin/ruby.exe -r ./siteconf20150128-3196-14hu57e.rb extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+make "DESTDIR=" install
+installing default libraries

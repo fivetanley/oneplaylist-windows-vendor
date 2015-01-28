@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-ruby "2.1.3"
+ruby "2.1.5"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'active_model_serializers', '~> 0.8.0'
 gem 'responders', '~> 2.0'
 gem 'devise'
+gem 'tzinfo-data'
 
 group :development, :test do
   gem 'sqlite3'
